@@ -24,8 +24,9 @@ const login = (req, res, next) => {
             const token = jwt.sign(user, env.authSecret, {
                 expiresIn: "1 day"
             })
-            var { name, email } = user
-            res.json({ name, email, token })
+            const name = user.name
+            const _email = user.email
+            res.json({ name, _email, token })
         } else {
             return res.status(400).send({ errors: ['Usuário/Senha inválidos'] })
         }
